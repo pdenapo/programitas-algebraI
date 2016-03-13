@@ -1,7 +1,7 @@
 # Implementación en Python 3 de la fórmula de Igor Turkanov 
 # para contar primos
 # http://arxiv.org/abs/1603.02914
-# Por Pablo De Nápoli <pdenapo@gmail.com> - Licencia: BSD  
+# Por Pablo De Nápoli <pdenapo@gmail.com> - Licencia: GPL versión 3
 
 from fractions import gcd
 from math import floor,sqrt
