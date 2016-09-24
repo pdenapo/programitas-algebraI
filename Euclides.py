@@ -3,6 +3,19 @@
 # Programa recursivo en Python 3 para calcular el máximo común divisor
 # usando el algoritmo de Euclides
 
+# Este programa tiene solamente propósitos didácticos 
+# (es para mis alumnos de Algebra I).
+
+# (C) 20014-2016  Pablo De Nápoli <pdenapo@dm.uba.ar>
+
+# Este programa es software libre, y usted puede redistribuirlo o 
+# modificarlo libremente bajo los términos de la 
+# GNU General Public Licence (Licencia Pública General), versión 3
+# o cualquier versión posterior, 
+# publicada por la Free Software Foundation. Vea:
+#
+# http://www.gnu.org/copyleft/gpl.html
+
 import argparse
 
 def mcd(a,b):

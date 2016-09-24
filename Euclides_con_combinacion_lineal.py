@@ -4,6 +4,19 @@
 # usando el algoritmo de Euclides, y los coeficientes que permiten 
 # escribirlo como combinación lineal
 
+# Este programa tiene solamente propósitos didácticos 
+# (es para mis alumnos de Algebra I).
+
+# (C) 20014-2016  Pablo De Nápoli <pdenapo@dm.uba.ar>
+
+# Este programa es software libre, y usted puede redistribuirlo o 
+# modificarlo libremente bajo los términos de la 
+# GNU General Public Licence (Licencia Pública General), versión 3
+# o cualquier versión posterior, 
+# publicada por la Free Software Foundation. Vea:
+#
+# http://www.gnu.org/copyleft/gpl.html
+
 import argparse
 
 def chequea_invariante(a,b,alfa_a_b,beta_a_b,mcd_a_b):
