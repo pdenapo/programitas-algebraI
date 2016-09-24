@@ -1,16 +1,26 @@
+#!/usr/bin/env python3
+
 # Programa recursivo en Python 3 para calcular el máximo común divisor
 # usando el algoritmo de Euclides
+
+import argparse
 
 def mcd(a,b):
   if b>a:
    return mcd(b,a)
   if b==0:
-    print ("El algoritmo de Euclides termina")
-    print ("El mcd es",a)
+    print ("El algoritmo de Euclides termina!")
+    print ("El máximo común divisor es",a)
     return a
   else: 
    q, r= divmod(a,b)
    print(a,"=",q,"*",b,"+",r)
    return mcd(b,r)
-   
-mcd(360,28)
+
+parser = argparse.ArgumentParser(description='Calcula el máximo común divisor usando el algoritmo de Euclides')
+parser.add_argument("a", type=int)
+parser.add_argument("b", type=int)
+args=parser.parse_args()
+
+print("Calculamos el máximo común divisor entre ",args.a," y ",args.b)   
+mcd(args.a,args.b)
