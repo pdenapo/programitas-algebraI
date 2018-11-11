@@ -2,10 +2,6 @@
 
 #Progama en Python 3 que genera la tabla de los números de Fibonacci
 
-# Programa en Python 3 que calcula el máximo común divisor 
-# usando el algoritmo de Euclides, y los coeficientes que permiten 
-# escribirlo como combinación lineal
-
 # Este programa tiene solamente propósitos didácticos 
 # (es para mis alumnos de Algebra I).
 
