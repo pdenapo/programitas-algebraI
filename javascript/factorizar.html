@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+</head>
+<body>
+
+<p>Esta página calcula la factorización de un número en factores primos (dada por el 
+  teorema fundamental de la aritmética. Funciona utilizando Javascript.
+</p>
+
+<p>Presione el botón para factorizar un número</p>
+
+<button onclick="on_click_callback()">Factorizar</button>
+
+<p id="demo"></p>
+
+<script>
+
+var output_text="";
+const  break_char="<br>"
+
+function factorize(n){
+factors=[];
+for (d=2;d<=n;d++)
+ {
+    if (n%d==0)
+    {
+      e=0;  
+      do
+      {
+        e++;
+        m=n/d;
+        output_text += n+"="+m+"*"+d+break_char;
+        n=m;
+      }
+      while (n%d==0);
+      new_factor=[d,e];
+      factors.push(new_factor);
+    };
+ };
+ return factors;
+};
+
+/* Esta funciòn calcula la factorización de un entero, utilizando la anterior, y la convierte a un formato agradable para mostrar en la pantalla */
+
+function pretty_factorization(n)
+{
+ factors_list= factorize(n);
+ if (factors_list.length==0) return "1";
+ text="";
+ for (i=0;i<factors_list.length;i++)
+  {
+    if (i>0)
+      text += "*";
+      factor=factors_list[i];
+      text+=factor[0]+"^"+factor[1];
+  };
+ return text;
+}
+
+function on_click_callback() {
+   var numero = prompt("Por favor introduzca un número", "");
+   output_text="Usted introdujo:" + numero+"<br>"  
+  if(isNaN(numero)){
+	output_text += numero + " no es un número <br/>";
+   }
+   else{
+    factorization=pretty_factorization(numero);
+    output_text +="La factorización de "+numero+" es "+factorization+"<br>"; 
+	   }
+  document.getElementById("demo").innerHTML = output_text;
+}
+</script>
+
+</body>
+</html>
+
