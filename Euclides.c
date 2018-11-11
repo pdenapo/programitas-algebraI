@@ -1,22 +1,22 @@
 
-/* Implementaci髇 del algoritmo de Euclides en C 
+/* Implementaci贸n del algoritmo de Euclides en C 
 
-Calcula el m醲imo com鷑 divisor de dos n鷐eros a y b, y los coeficientes 
-que permiten escribirlo como una combinaci髇 lineal de ambos.
+Calcula el m谩ximo com煤n divisor de dos n煤meros a y b, y los coeficientes 
+que permiten escribirlo como una combinaci贸n lineal de ambos.
 
-Este programa tiene solamente prop髎itos did醕ticos (es para mis alumnos
+Este programa tiene solamente prop贸sitos did谩cticos (es para mis alumnos
 de Algebra I).
 
-Ha sido desarrollado sobre el sistema GNU/Linux pero deber韆 funcionar
+Ha sido desarrollado sobre el sistema GNU/Linux pero deber铆a funcionar
 sobre cualquier sistema compatible con el standard POSIX, dado que 
-s髄o utiliza llamnadas a la librer韆 C est醤dar.
+s贸lo utiliza llamnadas a la librer铆a C est谩ndar.
 
-(C) 2007  Pablo De N醦oli <pdenapo@dm.uba.ar>
+(C) 2007  Pablo De N谩poli <pdenapo@dm.uba.ar>
 
 Este programa es software libre, y usted puede redistribuirlo o 
-modificarlo libremente bajo los t閞minos de la 
-GNU General Public Licence (Licencia P鷅lica General), versi髇 2
-o cualquier versi髇 posterior, 
+modificarlo libremente bajo los t茅rminos de la 
+GNU General Public Licence (Licencia P煤blica General), versi贸n 2
+o cualquier versi贸n posterior, 
 publicada por la Free Software Foundation. Vea:
 
 http://www.gnu.org/copyleft/gpl.html
@@ -25,10 +25,6 @@ http://www.gnu.org/copyleft/gpl.html
 
 #include <stdio.h>
 #include <stdlib.h>
-
-/* Funci髇 que imprime un mensaje de error y termina el programa si 
-algo falla al leer los argumentos */
-
 
 /* Programa Principal */
 
@@ -39,7 +35,7 @@ int main(int argc , char* argv[] )
   long a0,b0;
   long alpha,beta,alpha_prime, beta_prime, alpha_anterior,beta_anterior; 
   /*  variables usadas para calcular los coeficientes 
-      de la combinaci髇 lineal */
+      de la combinaci贸n lineal */
   ldiv_t resultado; /* almacena los resultados de la division */
   long aux;        /* variable auxiliar para intercanbio */
   
@@ -47,7 +43,7 @@ int main(int argc , char* argv[] )
   
   if (argc != 3)
   {
-    fprintf(stderr,"Este programa calcula el m醲imo com鷑 divisor mediante el algoritmo de Euclides.\n"); 
+    fprintf(stderr,"Este programa calcula el m谩ximo com煤n divisor mediante el algoritmo de Euclides.\n"); 
     fprintf(stderr,"Requiere exactamente dos argumentos, dados en la linea de comandos, por ejemplo: \n");
     fprintf(stderr,"euclides 21 31 \n");
     exit(1);
@@ -56,7 +52,7 @@ int main(int argc , char* argv[] )
   a=strtol(argv[1],NULL,0);
   b=strtol(argv[2],NULL,0);
   
-  printf("C醠culo del m醲imo com鷑 divisor entre %li y %li \nutilizando el algoritmo de Euclides: \n \n",a,b);
+  printf("C谩lculo del m谩ximo com煤n divisor entre %li y %li \nutilizando el algoritmo de Euclides: \n \n",a,b);
   
   /* Si a<b, los intercambiamos (Este paso no es realmente necesario)*/
   if (a<b)
@@ -77,7 +73,7 @@ int main(int argc , char* argv[] )
     alpha * a0 + beta * b0 = b
     alpha_prime * a0 + beta_prime* b0 = a 
    
-sean v醠idos al comienzo del ciclo */
+sean v谩lidos al comienzo del ciclo */
  
   alpha=0;
   beta=1;
@@ -88,7 +84,7 @@ sean v醠idos al comienzo del ciclo */
   while (b !=0)
     {
      
-     /* hacemos la divisi髇 entera: result es una estructura con dos componentes:
+     /* hacemos la divisi贸n entera: result es una estructura con dos componentes:
      r.quot es el cociente y r.rem es el resto */
      resultado = ldiv(a,b); 
      
@@ -103,7 +99,7 @@ sean v醠idos al comienzo del ciclo */
      a = b;
      b = resultado.rem;
      
-     /* Calculamos los nuevos coeficientes de la combinaci髇 lineal:
+     /* Calculamos los nuevos coeficientes de la combinaci贸n lineal:
      
     alpha, beta , alpha_prime, beta_prime 
     
@@ -125,19 +121,19 @@ sean v醠idos al comienzo del ciclo */
      alpha_prime = alpha_anterior;
      beta_prime  = beta_anterior;
      
-     /* Mostramos como se escribe b como combinanci髇 lineal de a0 y b0 */
+     /* Mostramos como se escribe b como combinanci贸n lineal de a0 y b0 */
      
      printf("%li = %li* %li + %li * %li \n",b,alpha,a0,beta,b0);
      
     };
     
-    /* a la salida a es el m醲imo com鷑 divisor de a0 y b0 */
+    /* a la salida a es el m谩ximo com煤n divisor de a0 y b0 */
     /* y alpha y beta son los coeficientes que permiten escribirlo  
-   como combinaci髇 lineal de a0 y b0 */  
+   como combinaci贸n lineal de a0 y b0 */  
   
    printf("\n Resultado:");
-   printf("M醲imo com鷑 divisor = %li\n",a);
-   printf("Escritura como combinaci髇 lineal de %li  y %li \n",a0,b0);
+   printf("M谩ximo com煤n divisor = %li\n",a);
+   printf("Escritura como combinaci贸n lineal de %li  y %li \n",a0,b0);
    printf("%li = %li* %li + %li * %li \n",a,alpha_prime,a0,beta_prime,b0);
  
   exit(0);
