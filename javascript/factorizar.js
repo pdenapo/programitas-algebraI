@@ -3,7 +3,7 @@
 /* Programa para factorizar un número en favtores primos para usar con node.js
    Ejemplo: para factorizar 360 ejecùtelo como
 
- node factorizar.js 200 */
+ node factorizar.js 360 */
 
 /* Función que devuelve la factorización de un número n, como una lista de pares [d,e]
    donde d representa a cada uno de los factores primos del nùmero n y e es el exponente correspondiente 
@@ -12,62 +12,98 @@
    de entender.
    */
 
+/* JavaScript code should be executed in "strict mode" */
+
+"use strict";
+
 /* Esta variable la usamos para acumular los textos que queremos devolver en pantalla como resultado */
 
+
 var output_text="";
-const  break_char="\n"
+
+/* Con esta constante establecemos si queremos usar <br> o \n como salto de lìnea */
+
+var  break_char;
+
+function get_break_char()
+{
+  if (typeof window === 'undefined') {
+  /* running under node.js */
+    return "\n";
+} else {
+    return "<br";
+}
+}
+
+/* Esta función factoriza un entero n y devuelve una lista de pares en un array en la forma [d,e] donde
+d es un divisor primo de n y e es el exponente correspondiente en su factorizaciòn */
 
 function factorize(n){
-factors=[];
-for (d=2;d<=n;d++)
+let factors=[];
+for (let d=2;d<=n;d++)
  {
     if (n%d==0)
     {
-      e=0;  
+      let e=0;  
       do
       {
         e++;
-        m=n/d;
+        let m=n/d;
         output_text += n+"="+m+"*"+d+break_char;
         n=m;
       }
       while (n%d==0);
-      new_factor=[d,e];
+      let new_factor=[d,e];
       factors.push(new_factor);
     };
  };
  return factors;
 };
 
-/* Esta funciòn calcula la factorización de un entero, utilizando la anterior, y la convierte a un formato agradable para mostrar en la pantalla */
+/* Esta funciòn toma la factorizaciòn de un entero calculada por la función anterior y 
+ la convierte a un formato agradable para mostrar en la pantalla */
 
-function pretty_factorization(n)
+function convert_to_pretty_factorization(factors_list)
 {
- factors_list= factorize(n);
  if (factors_list.length==0) return "1";
- text="";
- for (i=0;i<factors_list.length;i++)
+ let text="";
+ for (let i=0;i<factors_list.length;i++)
   {
     if (i>0)
       text += "*";
-      factor=factors_list[i];
+      let factor=factors_list[i];
       text+=factor[0]+"^"+factor[1];
   };
  return text;
+}
+
+function pretty_factorization(n)
+{
+  let factors_list= factorize(n);
+  return convert_to_pretty_factorization(factors_list);
 }
 
 /* Main Program code */
 /* Es posible un manejor más avanzado la linea de comandos usando comander.js 
  https://github.com/tj/commander.js/  pero tratemos de mantener las cosas lo más simples posibles */
 
- var numero = process.argv[2];
+ if (process.argv.length == 3) 
+ {
+  var numero = process.argv[2];
+ }
+  else
+ {
+  console.log('Este programa requiere exactamente un argumento: el nùmero a factorizar.') 
+  return 1;
+ };
+ break_char= get_break_char();
  output_text="Usted introdujo:" + numero+break_char  
  if(isNaN(numero)){
 	output_text += numero + " no es un número"+break_char;
    }
   else{
-    factorization=pretty_factorization(numero);
+    let factorization=pretty_factorization(numero);
     output_text +="La factorización de "+numero+" es "+factorization+break_char; 
    };   
    console.log(output_text);
- 
+   return 0;
