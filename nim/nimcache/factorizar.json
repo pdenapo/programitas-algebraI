@@ -1,0 +1,15 @@
+{"compile":[
+["/home/pablo/git/programitas-algebraI/nim/nimcache/factorizar.c", "gcc -c  -w  -I/usr/lib/nim -o /home/pablo/git/programitas-algebraI/nim/nimcache/factorizar.o /home/pablo/git/programitas-algebraI/nim/nimcache/factorizar.c"]
+],
+"extcompile":[
+],
+"link":[
+"/home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_algorithm.o",
+"/home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_math.o",
+"/home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_parseutils.o",
+"/home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_strutils.o",
+"/home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_system.o",
+"/home/pablo/git/programitas-algebraI/nim/nimcache/factorizar.o"
+],
+"linkcmd": "gcc   -o /home/pablo/git/programitas-algebraI/nim/factorizar  /home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_algorithm.o /home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_math.o /home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_parseutils.o /home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_strutils.o /home/pablo/git/programitas-algebraI/nim/nimcache/stdlib_system.o /home/pablo/git/programitas-algebraI/nim/nimcache/factorizar.o  -lm -ldl"
+}
