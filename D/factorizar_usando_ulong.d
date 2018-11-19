@@ -84,7 +84,13 @@ void main ()
    {
      writeln("Ingrese el número que quiere factorizar");
      readf("%s\n", &entrada);
-     numero=  to!ulong(entrada); 
+     try{
+      numero=  to!ulong(entrada);
+     } catch (std.conv.ConvException exc){
+        writeln("Es un número demasiado grande. Ingrese otro.");
+        writeln("Máximo=", ulong.max);
+        continue;
+       } 
      writeln("La factorización es\n",numero,"=",pretty_factorization(numero));
    }
 }

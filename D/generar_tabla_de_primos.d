@@ -6,7 +6,7 @@ import std.stdio;
 void main()
 {
   /* Cuantos números primos queremos obtener */
-  const uint cuantos=10000;
+  const uint cuantos=30;
   ulong[cuantos] tabla_de_primos;
   tabla_de_primos[0]=2;
   uint tope=1;
@@ -33,7 +33,6 @@ void main()
    {
     debug writeln("SI");
     tabla_de_primos[tope]=n;
-    writeln(n);
     tope++;   
    }
    if (n==ulong.max)
@@ -41,8 +40,8 @@ void main()
    n++;
   }
   debug writeln("Total:",tope," primos encontrados");
-  writeln("/* Este archivo fue automáticamente generado por
-  el programa generar_tabla_de_primos */") 
+  writeln("/* Este archivo fue automáticamente generado por 
+  el programa generar_tabla_de_primos */"); 
   write("const ulong[",tope,"] tabla_de_primos=[");
   for (uint i=0;i<tope;i++)
   {
