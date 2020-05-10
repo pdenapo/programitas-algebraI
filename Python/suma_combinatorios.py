@@ -1,3 +1,4 @@
+# suma del ejercicio 25 ii) de la práctica 3
 import scipy
 from scipy import special 
 from scipy.special import binom
