@@ -32,7 +32,8 @@ def chequea_invariante(a,b,s_a_b,t_a_b,mcd_a_b):
 
 def mcd_con_combinacion_lineal(a,b):
   if b>a:
-   return mcd_con_combinacion_lineal(b,a)
+   s,t,d=mcd_con_combinacion_lineal(b,a)
+   return (t,s,d)
   if b==0:
       s_a_b=1
       t_a_b=0
@@ -45,11 +46,12 @@ def mcd_con_combinacion_lineal(a,b):
      mcd_a_b = mcd_b_r
   chequea_invariante (a,b,s_a_b,t_a_b,mcd_a_b)
   return (s_a_b,t_a_b,mcd_a_b)
-  
-parser = argparse.ArgumentParser(description='Calcula el máximo común divisor usando el algoritmo de Euclides y lo escibe como una combinación lineal')
-parser.add_argument("a", type=int)
-parser.add_argument("b", type=int)
-args=parser.parse_args()
 
-print("Calculamos el máximo común divisor entre ",args.a," y ",args.b)   
-mcd_con_combinacion_lineal(args.a,args.b)
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser(description='Calcula el máximo común divisor usando el algoritmo de Euclides y lo escibe como una combinación lineal')
+  parser.add_argument("a", type=int)
+  parser.add_argument("b", type=int)
+  args=parser.parse_args()
+
+  print("Calculamos el máximo común divisor entre ",args.a," y ",args.b)   
+  mcd_con_combinacion_lineal(args.a,args.b)
