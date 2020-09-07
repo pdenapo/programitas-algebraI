@@ -20,7 +20,7 @@ def equivalencia(p,q):
 valores_de_verdad = [True,False]
 print("\\begin{array}{|l|l|l|l|l|l|l|}")
 print("\\hline")
-print("p & q & \sim p & \sim q  & p \Rightarrow q & q \Rightarrow q  & T \\\\")
+print("p & q & \sim p & \sim q  & p \Rightarrow q & \sim q \Rightarrow \sim p  & T \\\\")
 print("\\hline")
 for p in valores_de_verdad:
  for q in valores_de_verdad:
