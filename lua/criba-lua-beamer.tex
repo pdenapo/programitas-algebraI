@@ -1,0 +1,125 @@
+% Criba de Eratóstenes
+% Ejemplo de como usar código en lua para generar un documento tex
+% Procesar con lualatex
+
+\documentclass{beamer}
+
+\usepackage{pdfpages}
+\mode<presentation>
+{ \usetheme{Madrid} }
+
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{luacode}
+\usepackage{url}
+\usepackage{amsmath}
+
+\newcommand{\hlightP}[1]{%
+  \ooalign{\hss\makebox[0pt]{\fcolorbox{red!30}{green!40}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+\newcommand{\hlightC}[1]{%
+  \ooalign{\hss\makebox[0pt]{\fcolorbox{green!30}{red!40}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+
+\begin{document}
+
+% http://wiki.luatex.org/index.php/Writing_Lua_in_TeX
+
+%https://wiki.contextgarden.net/Programming_in_LuaTeX
+
+\title{La Criba de Eratóstenes}
+\author{Pablo De Nápoli}
+\maketitle
+
+\begin{frame}{La Criba de Eratóstenes}
+
+ \begin{itemize}
+ 
+ \item   La \alert{criba de Eratóstenes} (matemático griego, 276--194 AC) es un algoritmo que permite hallar todos los números primos menores que un 
+ número natural $n$ dado. 
+\item Se forma una tabla con todos los números naturales comprendidos entre 2 y $n$, 
+ y se van tachando los números que no son primos de la siguiente manera: Comenzando por el 2, se tachan todos 
+ sus múltiplos; comenzando de nuevo, cuando se encuentra un número entero que no ha sido tachado, ese número es 
+ declarado \alert{primo}, y se procede a tachar todos sus múltiplos, así sucesivamente. 
+ 
+\item El proceso termina cuando el cuadrado del siguiente número confirmado como primo es mayor que n.
+
+\end{itemize}
+
+Veremos como ejemplo como encontrar todos los primos menores que 100.
+
+\end{frame}
+
+\begin{luacode}
+function mostrar_criba(n,criba,cartel)
+    tex.print("\\begin{frame}{",cartel,"}")
+    columnas=10
+    tex.print("$$")
+    tex.print("\\begin{pmatrix}")  
+    for i = 1, n do 
+        if criba[i] then
+            tex.sprint("\\hlightP")   
+        else
+            tex.sprint("\\hlightC")      
+        end
+    tex.sprint("{")
+    tex.sprint(i)
+    tex.sprint("}")
+    if i % columnas== 0 then 
+      tex.sprint(" \\\\")
+    else 
+      tex.sprint(" & ")
+    end
+  end
+tex.print("\\end{pmatrix}")  
+tex.print("$$")
+tex.print("\\end{frame}")
+end 
+
+--- n representa hasta donde queremos calcular la tabla de primos
+
+local n = 100
+local criba = {}
+local primos = {}
+
+--- incialemnte ningún número fue tachado en la criba
+criba[1]=false
+for i = 2, n do criba[i] = true end
+
+mostrar_criba(n,criba,"Criba inicial")
+i=1
+for i = 2, n do
+ if criba[i] then
+   -- encontramos un primo
+   -- cuando el cuadrado del primo confirmado supera n, el algoritmo termina
+   if i*i>n then break end
+   -- sino tachamos sus múltiplos, son compuestos
+   tachamos_alguno=false
+   for j = i*2, n, i do 
+      criba[j] = false
+      tachamos_alguno=true 
+    end
+    if tachamos_alguno then
+       mostrar_criba(n,criba,"tachamos los múltiplos de ".. tostring(i))
+    end
+ end
+end
+
+for i = 2, n do
+ if criba[i] then
+    primos[#primos+1] = i
+  end     
+end
+
+tex.print("\\begin{frame}{Primos encontrados}")
+    
+tex.print("Los primos menores que ", n," son")    
+-- Muestra la lista de primos en el documento latex
+tex.sprint(table.concat(primos, " "))
+tex.print("\\end{frame}")
+\end{luacode}
+
+
+\end{document}
+
+

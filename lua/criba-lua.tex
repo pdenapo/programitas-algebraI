@@ -1,0 +1,93 @@
+% Criba de Eratóstenes
+% Ejemplo de como usar código en lua para generar un documento tex
+% Procesar con lualatex
+
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{luacode}
+\usepackage{xcolor}
+\usepackage{amsmath}
+
+\newcommand{\hlightP}[1]{%
+  \ooalign{\hss\makebox[0pt]{\fcolorbox{red!30}{green!40}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+\newcommand{\hlightC}[1]{%
+  \ooalign{\hss\makebox[0pt]{\fcolorbox{green!30}{red!40}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+
+
+\begin{document}
+
+% http://wiki.luatex.org/index.php/Writing_Lua_in_TeX
+
+%https://wiki.contextgarden.net/Programming_in_LuaTeX
+
+\title{Criba de Eratóstenes}
+\author{Pablo De Nápoli}
+\maketitle
+
+\begin{luacode}
+function mostrar_criba(n,criba)
+    columnas=10
+    tex.print("$$")
+    tex.print("\\begin{pmatrix}")  
+    for i = 1, n do
+  
+    if criba[i] then
+      tex.sprint("\\hlightP")   
+    else
+      tex.sprint("\\hlightC")      
+    end
+    tex.sprint("{")
+    tex.sprint(i)
+    tex.sprint("}")
+    if i % columnas== 0 then 
+      tex.sprint(" \\\\")
+    else 
+      tex.sprint(" & ")
+    end
+  end
+tex.print("\\end{pmatrix}")  
+tex.print("$$")
+end 
+
+--- n representa hasta donde queremos calcular la tabla de primos
+
+local n = 100
+local criba = {}
+local primos = {}
+
+--- incialemnte ningún número fue tachado en la criba
+criba[1]=false
+for i = 2, n do criba[i] = true end
+
+tex.print("Criba inicial")
+mostrar_criba(n,criba)
+for i = 2, n do
+ if criba[i] then
+   -- encontramos un primo, lo agregamos a la lista
+   primos[#primos+1] = i
+   -- tachamos sus múltiplos, son compuestos
+   tex.print("tachamos los múltiplos de ", i,"\\\\")
+   tachamos_alguno=false
+   for j = i*2, n, i do 
+      criba[j] = false
+      tachamos_alguno=true 
+    end
+    if tachamos_alguno then
+       mostrar_criba(n,criba)
+    end
+ end
+end
+
+tex.print("\\\\ Primos encontrados:")
+-- Muestra la lista de primos en el documento latex
+tex.sprint(table.concat(primos, " "))
+
+\end{luacode}
+
+
+\end{document}
+
+
