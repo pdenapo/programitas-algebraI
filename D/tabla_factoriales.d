@@ -3,7 +3,7 @@ import std.stdio;
 ulong factorial(ulong n)
 {
   ulong r=1;
-  for (ulong i=1;i<n;i++)
+  for (ulong i=1;i<=n;i++)
    r = r*i;
   return r;
 }
