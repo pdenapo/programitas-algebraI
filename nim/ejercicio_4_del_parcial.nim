@@ -22,10 +22,14 @@ for f1 in countup(1,10):
                     f[3]=f3
                     f[4]=f4
                     f[5]=f5
-                    echo f
+                    stdout.write f
                     inc(cuantas_item_a)
-                    if f1+f5=12:
+                    if f1+f5==12 :
                         inc(cuantas_item_c)
+                        #marcamos las que cumplen el item c con una *
+                        stdout.write " *"
+                    stdout.write '\n'    
+                    stdout.flushFile()
 
 echo "Respuesta item a)= ",cuantas_item_a
-echo "Respuesta item a)= ",cuantas_item_c  
+echo "Respuesta item c)= ",cuantas_item_c  
