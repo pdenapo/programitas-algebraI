@@ -75,3 +75,11 @@ def Euclides_matricial_con_polinomios(a,b):
             m[1,2] = r
         chequea_invariante(a,b,m)
     return (s_a_b,t_a_b,mcd_a_b)
+
+
+
+for n in range(0,30):
+        a=n**2+1
+        b=n+2
+        s,t,mcd= Euclides_extendido(a,b)
+        print(n,"&",a,"&",b,"&",s,"&",t,"&",mcd,"\\\\") 
