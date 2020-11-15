@@ -10,7 +10,8 @@ type
 
 var f: IntArray
 
-var cuantas:int =0 
+var cuantas_item_a:int =0 
+var cuantas_item_c:int =0 
 for f1 in countup(1,10):
     for f2 in countup(f1+1,10):
         for f3 in countup(f2+1,10):
@@ -22,6 +23,9 @@ for f1 in countup(1,10):
                     f[4]=f4
                     f[5]=f5
                     echo f
-                    inc(cuantas)
+                    inc(cuantas_item_a)
+                    if f1+f5=12:
+                        inc(cuantas_item_c)
 
-echo "Respuesta = ",cuantas 
+echo "Respuesta item a)= ",cuantas_item_a
+echo "Respuesta item a)= ",cuantas_item_c  
