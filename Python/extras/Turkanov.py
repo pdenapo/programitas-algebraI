@@ -3,8 +3,7 @@
 # http://arxiv.org/abs/1603.02914
 # Por Pablo De Nápoli <pdenapo@gmail.com> - Licencia: GPL versión 3
 
-from fractions import gcd
-from math import floor,sqrt
+from math import floor,sqrt,gcd
 
 # Esta función genera una lista cuyos elementos son todas
 # las posibles listas [i_1,i_2_...,i_s]
@@ -59,5 +58,13 @@ def primes_pi(n):
 def imprimir_tabla(limite):    
   for k in range(2,limite+1):
     print(k," ",primes_pi(k))
+
+# Se puede ejecutar los tests con pytest
+def test_100():
+    assert primes_pi(100) == 25    
    
-imprimir_tabla(100)
+def test_200():
+    assert primes_pi(200) == 46    
+
+def test_300():
+    assert primes_pi(300) == 62    
