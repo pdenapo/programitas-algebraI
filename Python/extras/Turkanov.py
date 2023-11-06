@@ -21,11 +21,11 @@ def generar_lista(s,k):
       L.append(f)
    return L
 
-# Esta función calcula el mìnimo comùn mùltiplo de dos enteros
+# Esta función calcula el mìnimo común mùltiplo de dos enteros
 def lcm(n,m):
     return n*m//gcd(n,m) 
     
-# Esta función calcula el mìnimo comùn múltiplo de los elementos de 
+# Esta función calcula el mìnimo común múltiplo de los elementos de 
 # una lista de enteros    
 def lcm_lista(L):
     if len(L)==1:
